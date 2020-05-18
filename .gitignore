@@ -1,0 +1,42 @@
+# Disallow binary artifacts from entering the repo
+*.[Ww][Aa][Rr]
+*.[Jj][Aa][Rr]
+*.[Aa][Pp][Kk]
+*.[Ee][Aa][Rr]
+*.[Dd][Ll][Ll]
+*.[Ss][Oo]
+*.[Dd][Yy][Ll][Ii][Bb]
+*.[Ee][Xx][Ee]
+*.[Zz][Ii][Pp]
+*.[Aa][Pp][Pp]/
+.DS_Store
+
+# Ignore IDE artifacts
+.idea/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+out/
+
+# Ignore normal gradle/grails build output stuff
+.gradle/
+build/
+build-gradle/
+build-eclipse/
+build-ij/
+buildPlugins/
+target/
+buildSrc/build/
+
+# Ignore files dropped by build and junits
+.cache/
+locks/
+autogen/
+
+# Ignore Db directory
+/db
+/databases/
+
