@@ -6,9 +6,9 @@ import com.mykhaliev.api.client.model.api.RequestMethod;
 import java.io.File;
 
 /**
- * Abstract parent for rest client.
+ * Abstract rest client interface.
  */
-public abstract class AbstractRestClient {
+public interface RestClient {
 
     /**
      * Get request.
@@ -17,7 +17,7 @@ public abstract class AbstractRestClient {
      * @param responseType response type
      * @return response
      */
-    public <T> T get(String path, TypeReference<T> responseType) {
+    default <T> T get(String path, TypeReference<T> responseType) {
         return callWithJson(RequestMethod.GET, path, responseType, null);
     }
 
@@ -29,7 +29,7 @@ public abstract class AbstractRestClient {
      * @param payload      payload
      * @return response
      */
-    public <T> T post(String path, TypeReference<T> responseType, Object payload) {
+    default <T> T post(String path, TypeReference<T> responseType, Object payload) {
         return callWithJson(RequestMethod.POST, path, responseType, payload);
     }
 
@@ -41,7 +41,7 @@ public abstract class AbstractRestClient {
      * @param payload      file for payload
      * @return response
      */
-    public <T> T postFile(String path, TypeReference<T> responseType, File payload) {
+    default <T> T postFile(String path, TypeReference<T> responseType, File payload) {
         return callWithMultipart(RequestMethod.POST, path, responseType, payload);
     }
 
@@ -53,7 +53,7 @@ public abstract class AbstractRestClient {
      * @param payload      payload
      * @return the response
      */
-    public <T> T put(String path, TypeReference<T> responseType, Object payload) {
+    default <T> T put(String path, TypeReference<T> responseType, Object payload) {
         return callWithJson(RequestMethod.PUT, path, responseType, payload);
     }
 
@@ -64,7 +64,7 @@ public abstract class AbstractRestClient {
      * @param payload the payload
      * @return response
      */
-    public <T> T patch(String path, TypeReference<T> responseType, Object payload) {
+    default <T> T patch(String path, TypeReference<T> responseType, Object payload) {
         return callWithJson(RequestMethod.PATCH, path, responseType, payload);
     }
 
@@ -74,9 +74,8 @@ public abstract class AbstractRestClient {
      * @param path path
      * @return response
      */
-    public Object delete(String path) {
+    default Object delete(String path) {
         return callWithJson(RequestMethod.DELETE, path, null, null);
-
     }
 
     /**
@@ -88,7 +87,7 @@ public abstract class AbstractRestClient {
      * @param payload      payload
      * @return response
      */
-    public abstract <T> T callWithJson(RequestMethod method, String path, TypeReference<T> responseType, Object payload);
+    <T> T callWithJson(RequestMethod method, String path, TypeReference<T> responseType, Object payload);
 
     /**
      * Generic multipart request.
@@ -99,7 +98,7 @@ public abstract class AbstractRestClient {
      * @param payload      payload
      * @return response
      */
-    public abstract <T> T callWithMultipart(RequestMethod method, String path, TypeReference<T> responseType, File payload);
+    <T> T callWithMultipart(RequestMethod method, String path, TypeReference<T> responseType, File payload);
 
     /**
      * Downloads file.
@@ -107,6 +106,6 @@ public abstract class AbstractRestClient {
      * @param url             file url
      * @param destinationPath file destination path
      */
-    public abstract void downloadFile(String url, String destinationPath);
+    void downloadFile(String url, String destinationPath);
 
 }

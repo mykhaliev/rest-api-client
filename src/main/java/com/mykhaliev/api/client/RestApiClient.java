@@ -64,7 +64,7 @@ import java.security.cert.X509Certificate;
 /**
  * Example of rest client implementation.
  */
-public class RestApiClient extends AbstractRestClient {
+public class RestApiClient implements RestClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RestApiClient.class);
     private static final ObjectMapper MAPPER = new ObjectMapper()

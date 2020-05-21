@@ -18,7 +18,7 @@ public class PetstoreRestClient {
     public static final String PET_ROOT_PATH = "/pets/{0,number,#}";
     public static final String PET_INFO_PATH = "/pets/{0,number,#}/info";
 
-    private final AbstractRestClient client;
+    private final RestClient client;
 
     public PetstoreRestClient(RestApiClientConfig config) {
         client = new RestApiClient(config);
